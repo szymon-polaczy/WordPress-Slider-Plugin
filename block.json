@@ -1,0 +1,11 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 2,
+	"name": "goo/slider",
+	"title": "Custom WordPress Slider",
+	"description": "This block displays a custom slider with lots of customization options",
+	"category": "GOO Blocks",
+	"editorScript": "file:./build/index.js",
+	"editorStyle": "file:./assets/style.css",
+	"style": "file:./assets/front.css"
+}
