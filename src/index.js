@@ -8,6 +8,12 @@ registerBlockType(
 	metadata,
 	{
 		edit: Edit,
-		save: Save
+		save: Save,
+		attributes: {
+			slides: {
+				type: "array",
+				default: []
+			}
+		}
 	}
 )

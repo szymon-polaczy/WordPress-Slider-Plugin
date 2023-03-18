@@ -5,11 +5,15 @@
   "main": "index.js",
   "scripts": {
     "build": "wp-scripts build",
-	  "start": "wp-scripts start"
+    "start": "wp-scripts start"
   },
   "author": "szymon polaczy",
   "license": "MIT",
   "devDependencies": {
     "@wordpress/scripts": "^26.0.0"
+  },
+  "dependencies": {
+    "@wordpress/block-editor": "^11.6.0",
+    "@wordpress/components": "^23.6.0"
   }
 }
