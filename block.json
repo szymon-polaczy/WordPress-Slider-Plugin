@@ -6,7 +6,6 @@
 	"description": "This block displays a custom slider with lots of customization options",
 	"category": "GOO Blocks",
 	"editorScript": "file:./build/index.js",
-	"editorStyle": "file:./assets/style.css",
+	"editorStyle": "file:./assets/editor.css",
 	"style": "file:./assets/front.css"
-	
 }

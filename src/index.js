@@ -107,14 +107,22 @@ registerBlockType(
       const { slides } = attributes;
 
       if (slides) {
-        return <section {...blockProps}>
-          {slides.map(slide =>
-            <div>
-              <RichText.Content value={slide.text} />
-              <img src={slide.image?.url} />
+        return <>
+          <section {...blockProps}>
+            <div class="splide" role="group" aria-label="Splide Basic HTML Example">
+              <div class="splide__track">
+                <div class="splide__list">
+                  {slides.map(slide =>
+                    <div class="splide__slide">
+                      <RichText.Content value={slide.text} />
+                      <img src={slide.image?.url} style="max-width: 100%; height: 100%; object-fit: contain;2"/>
+                    </div>
+                  )}
+                </div>
+              </div>
             </div>
-          )}
-        </section>
+          </section>
+        </>
       } else {
         return <p>No Slides</p>
       }
