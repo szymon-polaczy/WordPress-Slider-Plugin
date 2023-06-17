@@ -1,13 +1,13 @@
 import { registerBlockType } from '@wordpress/blocks';
-import { useBlockProps, MediaUpload, RichText } from '@wordpress/block-editor';
+import { useBlockProps, MediaUpload, MediaPlaceholder, RichText, MediaUploadCheck, InspectorControls } from '@wordpress/block-editor';
+import { Button, Draggable, Panel, SelectControl } from '@wordpress/components';
 
 import metadata from './../block.json';
 
-//I think I can use the ItemGroup element to get the parent slider in the edit
-//And for each slide I can have an Item
-//I should be then able to create a button that would add another object
-//to an array and the html would just be looping over that array and displaying
-//the images and texts
+import {
+	IconButton,
+	PanelBody,
+} from '@wordpress/components';
 
 registerBlockType( 
 	metadata,
@@ -38,43 +38,74 @@ registerBlockType(
       return <div {...blockProps}>
         { slides ? 
         <section>
-          { slides.map((slide, index) => 
-            <div>
-              <MediaUpload
-                onSelect={(imageObject) => onImageChange(imageObject, index)}
-                type="image"
-                value={slide.image?.sizes.full.url}
-                render={({ open }) => (
-                  <button onClick={open}>
-                    Upload Image!
-                  </button>
-                )}
-              />
+          { slides.map((slide, index) =>
+          <Panel>
+            <PanelBody>
+                <MediaPlaceholder
+                      onSelect = {(imageObject) => onImageChange(imageObject, index)}
+                      allowedTypes = { [ 'image' ] }
+                      multiple = { false }
+                      labels = {{title: null}}
+                      value={slide.image?.url}
+                      mediaPreview={slide.image ? <img src={slide.image.url}/> : ''}
+                    />
 
-              <RichText
-                tagName="h2"
-                className="content"
-                value={slide.text}
-                onChange={new_value => onTextChange(new_value, index)}
-                placeholder="Enter your text here!"
+                <RichText
+                  tagName="div"
+                  placeholder="Insert slider text here"
+                  value={slide.text}
+                  onChange={(newText) => onTextChange(newText, index)}
+                  allowedFormats={['core/bold', 'core/italic', 'core/link']}
                 />
-            </div>
+
+                <SelectControl
+                            label="Vertical Position"
+                            options={ [
+                                { label: 'Top', value: 'top' },
+                                { label: 'Center', value: 'center' },
+                                { label: 'Bottom', value: 'bottom' },
+                            ] }
+                        />
+
+                        <SelectControl
+                                    label="Horizontal Position"
+                                    options={ [
+                                        { label: 'Left', value: 'top' },
+                                        { label: 'Center', value: 'center' },
+                                        { label: 'Right', value: 'bottom' },
+                                    ] }
+                                />
+
+              <IconButton
+                icon="no-alt"
+                label={`Delete slide number ${index}`}
+                onClick={ () => {console.log('add deleting slides')} }
+              />
+            </PanelBody>
+          </Panel>
           )}
         </section> : <p>No Slides</p>}
 
-        <button onClick={ addSlide }>Add Slide</button>
+        <IconButton
+                icon="plus"
+                label="Add another slide"
+                onClick={ addSlide }
+        >
+          Add Slide
+        </IconButton>
       </div>
     },
 		save: ( { attributes } ) => {
       const blockProps = useBlockProps.save();
       const { slides } = attributes;
 
+      //
       if ( slides ) {
         return <section {...blockProps}>
           { slides.map(slide => 
             <div>
-              { slide.text }
-              <img src={slide.image?.sizes.full.url}/>
+              <RichText.Content value={slide.text} />
+              <img src={slide.image?.url}/>
             </div>
           ) }
         </section>
