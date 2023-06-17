@@ -1,13 +1,20 @@
 import { registerBlockType } from '@wordpress/blocks';
-import { useBlockProps, MediaPlaceholder, RichText, MediaUploadCheck } from '@wordpress/block-editor';
-import { Panel, SelectControl } from '@wordpress/components';
-
-import metadata from './../block.json';
 
 import {
   IconButton,
   PanelBody,
+  Panel, 
+  SelectControl
 } from '@wordpress/components';
+
+import { 
+  useBlockProps, 
+  MediaPlaceholder, 
+  RichText, 
+  MediaUploadCheck 
+} from '@wordpress/block-editor';
+
+import metadata from './../block.json';
 
 registerBlockType(
   metadata,
