@@ -233,8 +233,6 @@ __webpack_require__.r(__webpack_exports__);
     const {
       slides
     } = attributes;
-
-    //
     if (slides) {
       return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("section", blockProps, slides.map(slide => (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.RichText.Content, {
         value: slide.text
