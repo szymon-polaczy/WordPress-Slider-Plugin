@@ -155,23 +155,52 @@ __webpack_require__.r(__webpack_exports__);
     const addSlide = () => {
       const new_slide = {
         image: null,
-        text: null
+        text: null,
+        horizontal: null,
+        vertical: null
       };
       setAttributes({
         slides: [...slides, new_slide]
       });
     };
+    const removeSlide = index => {
+      slides.splice(index, 1);
+      setAttributes(slides);
+    };
     const onTextChange = (new_value, index) => {
       slides[index].text = new_value;
       setAttributes(slides);
-      console.log(slides);
     };
     const onImageChange = (new_image, index) => {
       slides[index].image = new_image;
       setAttributes(slides);
-      console.log(slides);
     };
-    return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", blockProps, slides ? (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("section", null, slides.map((slide, index) => (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.Panel, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.PanelBody, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_3__.MediaPlaceholder, {
+    const onVerticalChange = (new_value, index, responsiveness) => {
+      const active_value = slides[index].vertical;
+      if (active_value) {
+        active_value[responsiveness] = new_value;
+        slides[index].vertical = active_value;
+      } else {
+        const new_vertical = new Object();
+        new_vertical[responsiveness] = new_value;
+        slides[index].vertical = new_vertical;
+      }
+      setAttributes(slides);
+    };
+    const onHorizontalChange = (new_value, index) => {
+      slides[index].horizontal = new_value;
+      setAttributes(slides);
+    };
+    return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", blockProps, slides ? (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("section", null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_3__.InspectorControls, {
+      key: "setting"
+    }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+      id: "gutenpride-controls"
+    }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("fieldset", null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("legend", {
+      className: "blocks-base-control__label"
+    }, 'Background color'), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_3__.ColorPalette // Element Tag for Gutenberg standard colour selector
+    , {
+      onChange: {} // onChange event callback
+    })))), slides.map((slide, index) => (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.Panel, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.PanelBody, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_3__.MediaPlaceholder, {
       onSelect: imageObject => onImageChange(imageObject, index),
       allowedTypes: ['image'],
       multiple: false,
@@ -188,8 +217,10 @@ __webpack_require__.r(__webpack_exports__);
       value: slide.text,
       onChange: newText => onTextChange(newText, index),
       allowedFormats: ['core/bold', 'core/italic', 'core/link']
-    }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.SelectControl, {
-      label: "Vertical Position",
+    }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.SelectControl, {
+      label: "Vertical Position (Desktop)",
+      onChange: value => onVerticalChange(value, index, 'desktop'),
+      value: slide.vertical?.desktop,
       options: [{
         label: 'Top',
         value: 'top'
@@ -201,23 +232,37 @@ __webpack_require__.r(__webpack_exports__);
         value: 'bottom'
       }]
     }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.SelectControl, {
-      label: "Horizontal Position",
+      label: "Vertical Position (Mobile)",
+      onChange: value => onVerticalChange(value, index, 'mobile'),
+      value: slide.vertical?.mobile,
       options: [{
-        label: 'Left',
+        label: 'Top',
         value: 'top'
       }, {
         label: 'Center',
         value: 'center'
       }, {
-        label: 'Right',
+        label: 'Bottom',
         value: 'bottom'
       }]
-    }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.IconButton, {
+    }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.SelectControl, {
+      label: "Horizontal Position (On tablet and mobile it's centered)",
+      onChange: value => onHorizontalChange(value, index),
+      value: slide.horizontal,
+      options: [{
+        label: 'Left',
+        value: 'left'
+      }, {
+        label: 'Center',
+        value: 'center'
+      }, {
+        label: 'Right',
+        value: 'right'
+      }]
+    })), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.IconButton, {
       icon: "no-alt",
       label: `Delete slide number ${index}`,
-      onClick: () => {
-        console.log('add deleting slides');
-      }
+      onClick: () => removeSlide(index)
     }))))) : (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("p", null, "No Slides"), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.IconButton, {
       icon: "plus",
       label: "Add another slide",
