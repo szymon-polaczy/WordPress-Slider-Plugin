@@ -83,7 +83,7 @@ registerBlockType(
                 </InspectorControls>
 
             {slides.map((slide, index) =>
-              <Panel>
+              <Panel class="slide">
                 <PanelBody>
                   <MediaPlaceholder
                     onSelect={(imageObject) => onImageChange(imageObject, index)}
@@ -95,6 +95,7 @@ registerBlockType(
                   />
 
                   <RichText
+                    class="rich-text"
                     tagName="div"
                     placeholder="Insert slider text here"
                     value={slide.text}
@@ -102,7 +103,7 @@ registerBlockType(
                     allowedFormats={['core/bold', 'core/italic', 'core/link']}
                   />
 
-                  <div>
+                  <div class="position-wrappers">
                     <SelectControl
                       label="Vertical Position (Desktop)"
                       onChange={ (value) => onVerticalChange(value, index, 'desktop') }
@@ -126,7 +127,7 @@ registerBlockType(
                     />
 
                     <SelectControl
-                      label="Horizontal Position (On tablet and mobile it's centered)"
+                      label="Horizontal Position (Full width on mobile)"
                       onChange={ (value) => onHorizontalChange(value, index) }
                       value={slide.horizontal}
                       options={[
@@ -137,11 +138,13 @@ registerBlockType(
                     />
                   </div>
 
-                  <IconButton
-                    icon="no-alt"
-                    label={`Delete slide number ${index}`}
-                    onClick={() => removeSlide(index)}
-                  />
+                  <div class="remove-slide-wrapper">
+                    <IconButton
+                      icon="no-alt"
+                      label={`Delete slide number ${index}`}
+                      onClick={() => removeSlide(index)}
+                    />
+                  </div>
                 </PanelBody>
               </Panel>
             )}
@@ -168,8 +171,18 @@ registerBlockType(
                 <div class="splide__list">
                   {slides.map(slide =>
                     <div class="splide__slide">
-                      <RichText.Content value={slide.text} />
-                      <img src={slide.image?.url} style="max-width: 100%; height: 100%; object-fit: contain;2"/>
+                      <article class="slide-text-overlay"
+                        data-vertical-desktop={slide.vertical?.desktop} 
+                        data-vertical-mobile={slide.vertical?.mobile}
+                        data-horizontal={slide.horizontal}
+                      >
+                        <div>
+                          <RichText.Content value={slide.text} />
+                        </div>
+                      </article>
+                      <img src={slide.image?.url} 
+                        style="max-width: 100%; height: 100%; object-fit: cover;"
+                      />
                     </div>
                   )}
                 </div>
