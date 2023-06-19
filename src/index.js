@@ -3,8 +3,12 @@ import { registerBlockType } from '@wordpress/blocks';
 import {
   IconButton,
   PanelBody,
-  Panel, 
-  SelectControl
+  Panel,
+  SelectControl,
+  CheckboxControl,
+  RadioControl,
+  TextControl,
+  ToggleControl,
 } from '@wordpress/components';
 
 import {
@@ -69,18 +73,106 @@ registerBlockType(
       return <div {...blockProps}>
         {slides ?
           <section>
-                <InspectorControls key="setting">
-                    <div id="gutenpride-controls">
-                        <fieldset>
-                            <legend className="blocks-base-control__label">
-                                { 'Background color' }
-                            </legend>
-                            <ColorPalette // Element Tag for Gutenberg standard colour selector
-                                onChange={{}} // onChange event callback
-                            />
-                        </fieldset>
-                    </div>
-                </InspectorControls>
+            <InspectorControls key="setting">
+              <TextControl
+                label="Slides per page"
+              //help="Define start index"
+              //value={ textField }
+              //onChange={ onChangeTextField }
+              />
+
+              <TextControl
+                label="Slides per move"
+              />
+
+              <ToggleControl
+                label="Enable arrows"
+              //checked={ checkboxField }
+              //onChange={ onChangeCheckboxField }
+              />
+
+              <ToggleControl
+                label="Enable pagination (indicator dots)"
+              />
+
+              <ToggleControl
+                label="Enable pause on hover"
+              />
+
+              <ToggleControl
+                label="Enable pause on focus"
+              />
+
+              <ToggleControl
+                label="Enable dragging"
+              />
+
+              <ToggleControl
+                label="Enable autoplay"
+              />
+
+              <TextControl
+                label="Autoplay interval - Number of miliseconds between autoplay intervals"
+              />
+
+              <TextControl
+                label="Gap between slides (The CSS format is acceptable)"
+              />
+
+              <TextControl
+                label="Easing function"
+                help="The CSS format is acceptable (linear, ease or cubic-bezier())"
+              />
+
+              <TextControl
+                label="Transition speed"
+                help="The transition speed in miliseconds (0 to insantly jump to the next)"
+              />
+
+              <ToggleControl
+                label="Enable rewind to first slide (doesn't work in loop mode)"
+              />
+
+              <ToggleControl
+                label="Enable rewind by drag to first slide (rewind option has to be enabled)"
+              />
+
+              <TextControl
+                label="Rewind speed"
+                help="The rewind speed in miliseconds (Transition speed is used as default)"
+              />
+
+              <TextControl
+                label="Start slide"
+                help="Define start index"
+              />
+
+              <SelectControl
+                label="Slider direction"
+                options={[
+                  { value: 'ltr', label: 'Left to right' },
+                  { value: 'rtl', label: 'Right to left' },
+                  { value: 'ttb', label: 'Top to bottom' },
+                ]}
+              />
+
+              <SelectControl
+                label="Pagination direction"
+                options={[
+                  { value: 'ltr', label: 'Left to right' },
+                  { value: 'rtl', label: 'Right to left' },
+                  { value: 'ttb', label: 'Top to bottom' },
+                ]}
+              />
+
+              <SelectControl
+                label="Slider type"
+                options={[
+                  { value: 'slide', label: 'Slide' },
+                  { value: 'loop', label: 'Loop' },
+                ]}
+              />
+            </InspectorControls>
 
             {slides.map((slide, index) =>
               <Panel class="slide">
@@ -106,7 +198,7 @@ registerBlockType(
                   <div class="position-wrappers">
                     <SelectControl
                       label="Vertical Position (Desktop)"
-                      onChange={ (value) => onVerticalChange(value, index, 'desktop') }
+                      onChange={(value) => onVerticalChange(value, index, 'desktop')}
                       value={slide.vertical?.desktop}
                       options={[
                         { label: 'Top', value: 'top' },
@@ -117,7 +209,7 @@ registerBlockType(
 
                     <SelectControl
                       label="Vertical Position (Mobile)"
-                      onChange={ (value) => onVerticalChange(value, index, 'mobile') }
+                      onChange={(value) => onVerticalChange(value, index, 'mobile')}
                       value={slide.vertical?.mobile}
                       options={[
                         { label: 'Top', value: 'top' },
@@ -128,7 +220,7 @@ registerBlockType(
 
                     <SelectControl
                       label="Horizontal Position (Full width on mobile)"
-                      onChange={ (value) => onHorizontalChange(value, index) }
+                      onChange={(value) => onHorizontalChange(value, index)}
                       value={slide.horizontal}
                       options={[
                         { label: 'Left', value: 'left' },
@@ -172,7 +264,7 @@ registerBlockType(
                   {slides.map(slide =>
                     <div class="splide__slide">
                       <article class="slide-text-overlay"
-                        data-vertical-desktop={slide.vertical?.desktop} 
+                        data-vertical-desktop={slide.vertical?.desktop}
                         data-vertical-mobile={slide.vertical?.mobile}
                         data-horizontal={slide.horizontal}
                       >
@@ -180,7 +272,7 @@ registerBlockType(
                           <RichText.Content value={slide.text} />
                         </div>
                       </article>
-                      <img src={slide.image?.url} 
+                      <img src={slide.image?.url}
                         style="max-width: 100%; height: 100%; object-fit: cover;"
                       />
                     </div>
