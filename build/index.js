@@ -214,35 +214,61 @@ __webpack_require__.r(__webpack_exports__);
       checked: settings.arrows,
       onChange: new_value => updateSetting(new_value, 'arrows')
     }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.ToggleControl, {
-      label: "Enable pagination (indicator dots)"
+      label: "Enable pagination (indicator dots)",
+      checked: settings.pagination,
+      onChange: new_value => updateSetting(new_value, 'pagination')
     }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.ToggleControl, {
-      label: "Enable pause on hover"
+      label: "Enable pause on hover",
+      checked: settings.pauseOnHover,
+      onChange: new_value => updateSetting(new_value, 'pauseOnHover')
     }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.ToggleControl, {
-      label: "Enable pause on focus"
+      label: "Enable pause on focus",
+      checked: settings.pauseOnFocus,
+      onChange: new_value => updateSetting(new_value, 'pauseOnFocus')
     }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.ToggleControl, {
-      label: "Enable dragging"
+      label: "Enable dragging",
+      checked: settings.drag,
+      onChange: new_value => updateSetting(new_value, 'drag')
     }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.ToggleControl, {
-      label: "Enable autoplay"
+      label: "Enable autoplay",
+      checked: settings.autoplay,
+      onChange: new_value => updateSetting(new_value, 'autoplay')
     }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.TextControl, {
-      label: "Autoplay interval - Number of miliseconds between autoplay intervals"
+      label: "Autoplay interval - Number of miliseconds between autoplay intervals",
+      checked: settings.interval,
+      onChange: new_value => updateSetting(new_value, 'interval')
     }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.TextControl, {
-      label: "Gap between slides (The CSS format is acceptable)"
+      label: "Gap between slides (The CSS format is acceptable)",
+      checked: settings.gap,
+      onChange: new_value => updateSetting(new_value, 'gap')
     }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.TextControl, {
       label: "Easing function",
-      help: "The CSS format is acceptable (linear, ease or cubic-bezier())"
+      help: "The CSS format is acceptable (linear, ease or cubic-bezier())",
+      checked: settings.easing,
+      onChange: new_value => updateSetting(new_value, 'easing')
     }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.TextControl, {
       label: "Transition speed",
-      help: "The transition speed in miliseconds (0 to insantly jump to the next)"
+      help: "The transition speed in miliseconds (0 to insantly jump to the next)",
+      checked: settings.speed,
+      onChange: new_value => updateSetting(new_value, 'speed')
     }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.ToggleControl, {
-      label: "Enable rewind to first slide (doesn't work in loop mode)"
+      label: "Enable rewind to first slide (doesn't work in loop mode)",
+      checked: settings.rewind,
+      onChange: new_value => updateSetting(new_value, 'rewind')
     }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.ToggleControl, {
-      label: "Enable rewind by drag to first slide (rewind option has to be enabled)"
+      label: "Enable rewind by drag to first slide (rewind option has to be enabled)",
+      checked: settings.rewindByDrag,
+      onChange: new_value => updateSetting(new_value, 'rewindByDrag')
     }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.TextControl, {
       label: "Rewind speed",
-      help: "The rewind speed in miliseconds (Transition speed is used as default)"
+      help: "The rewind speed in miliseconds (Transition speed is used as default)",
+      checked: settings.rewindSpeed,
+      onChange: new_value => updateSetting(new_value, 'rewindSpeed')
     }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.TextControl, {
       label: "Start slide",
-      help: "Define start index"
+      help: "Define start index",
+      checked: settings.start,
+      onChange: new_value => updateSetting(new_value, 'start')
     }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.SelectControl, {
       label: "Slider direction",
       options: [{
@@ -254,7 +280,9 @@ __webpack_require__.r(__webpack_exports__);
       }, {
         value: 'ttb',
         label: 'Top to bottom'
-      }]
+      }],
+      value: settings.direction,
+      onChange: new_value => updateSetting(new_value, 'direction')
     }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.SelectControl, {
       label: "Pagination direction",
       options: [{
@@ -266,7 +294,9 @@ __webpack_require__.r(__webpack_exports__);
       }, {
         value: 'ttb',
         label: 'Top to bottom'
-      }]
+      }],
+      value: settings.paginationDirection,
+      onChange: new_value => updateSetting(new_value, 'paginationDirection')
     }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.SelectControl, {
       label: "Slider type",
       options: [{
@@ -275,7 +305,9 @@ __webpack_require__.r(__webpack_exports__);
       }, {
         value: 'loop',
         label: 'Loop'
-      }]
+      }],
+      value: settings.type,
+      onChange: new_value => updateSetting(new_value, 'type')
     })), slides.map((slide, index) => (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.Panel, {
       class: "slide"
     }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.PanelBody, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_3__.MediaPlaceholder, {
@@ -412,6 +444,66 @@ __webpack_require__.r(__webpack_exports__);
         arrows: {
           type: 'boolean',
           default: true
+        },
+        pagination: {
+          type: 'boolean',
+          default: true
+        },
+        pauseOnHover: {
+          type: 'boolean',
+          default: true
+        },
+        pauseOnFocus: {
+          type: 'boolean',
+          default: true
+        },
+        drag: {
+          type: 'boolean',
+          default: true
+        },
+        autoplay: {
+          type: 'boolean',
+          default: true
+        },
+        interval: {
+          type: 'interval',
+          default: 5000
+        },
+        gap: {
+          type: 'string',
+          default: '0px'
+        },
+        easing: {
+          type: 'string',
+          default: 'ease'
+        },
+        speed: {
+          type: 'number',
+          default: 1000
+        },
+        rewind: {
+          type: 'boolean',
+          default: true
+        },
+        rewindByDrag: {
+          type: 'boolean',
+          default: true
+        },
+        rewindSpeed: {
+          type: 'number',
+          default: 5000
+        },
+        start: {
+          type: 'string',
+          default: 'ltr'
+        },
+        pagination: {
+          type: 'string',
+          default: 'ltr'
+        },
+        type: {
+          type: 'string',
+          default: 'loop'
         }
       }
     }

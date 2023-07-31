@@ -99,58 +99,84 @@ registerBlockType(
 
               <ToggleControl
                 label="Enable pagination (indicator dots)"
+                checked={ settings.pagination }
+                onChange={ (new_value) => updateSetting(new_value, 'pagination') }
               />
 
               <ToggleControl
                 label="Enable pause on hover"
+                checked={ settings.pauseOnHover }
+                onChange={ (new_value) => updateSetting(new_value, 'pauseOnHover') }
               />
 
               <ToggleControl
                 label="Enable pause on focus"
+                checked={ settings.pauseOnFocus }
+                onChange={ (new_value) => updateSetting(new_value, 'pauseOnFocus') }
               />
 
               <ToggleControl
                 label="Enable dragging"
+                checked={ settings.drag }
+                onChange={ (new_value) => updateSetting(new_value, 'drag') }
               />
 
               <ToggleControl
                 label="Enable autoplay"
+                checked={ settings.autoplay }
+                onChange={ (new_value) => updateSetting(new_value, 'autoplay') }
               />
 
               <TextControl
                 label="Autoplay interval - Number of miliseconds between autoplay intervals"
+                checked={ settings.interval }
+                onChange={ (new_value) => updateSetting(new_value, 'interval') }
               />
 
               <TextControl
                 label="Gap between slides (The CSS format is acceptable)"
+                checked={ settings.gap }
+                onChange={ (new_value) => updateSetting(new_value, 'gap') }
               />
 
               <TextControl
                 label="Easing function"
                 help="The CSS format is acceptable (linear, ease or cubic-bezier())"
+                checked={ settings.easing }
+                onChange={ (new_value) => updateSetting(new_value, 'easing') }
               />
 
               <TextControl
                 label="Transition speed"
                 help="The transition speed in miliseconds (0 to insantly jump to the next)"
+                checked={ settings.speed }
+                onChange={ (new_value) => updateSetting(new_value, 'speed') }
               />
 
               <ToggleControl
                 label="Enable rewind to first slide (doesn't work in loop mode)"
+                checked={ settings.rewind }
+                onChange={ (new_value) => updateSetting(new_value, 'rewind') }
               />
 
               <ToggleControl
                 label="Enable rewind by drag to first slide (rewind option has to be enabled)"
+                checked={ settings.rewindByDrag }
+                onChange={ (new_value) => updateSetting(new_value, 'rewindByDrag') }
               />
 
               <TextControl
                 label="Rewind speed"
                 help="The rewind speed in miliseconds (Transition speed is used as default)"
+                checked={ settings.rewindSpeed }
+                onChange={ (new_value) => updateSetting(new_value, 'rewindSpeed') }
               />
 
               <TextControl
                 label="Start slide"
                 help="Define start index"
+                checked={ settings.start }
+                onChange={ (new_value) => updateSetting(new_value, 'start') }
               />
 
               <SelectControl
@@ -160,6 +186,8 @@ registerBlockType(
                   { value: 'rtl', label: 'Right to left' },
                   { value: 'ttb', label: 'Top to bottom' },
                 ]}
+                value={ settings.direction }
+                onChange={ (new_value) => updateSetting(new_value, 'direction') }
               />
 
               <SelectControl
@@ -169,6 +197,8 @@ registerBlockType(
                   { value: 'rtl', label: 'Right to left' },
                   { value: 'ttb', label: 'Top to bottom' },
                 ]}
+                value={ settings.paginationDirection }
+                onChange={ (new_value) => updateSetting(new_value, 'paginationDirection') }
               />
 
               <SelectControl
@@ -177,6 +207,8 @@ registerBlockType(
                   { value: 'slide', label: 'Slide' },
                   { value: 'loop', label: 'Loop' },
                 ]}
+                value={ settings.type }
+                onChange={ (new_value) => updateSetting(new_value, 'type') }
               />
             </InspectorControls>
 
@@ -321,6 +353,66 @@ registerBlockType(
                 arrows: {
                     type: 'boolean',
                     default: true
+                },
+                pagination: {
+                    type: 'boolean',
+                    default: true
+                },
+                pauseOnHover: {
+                    type: 'boolean',
+                    default: true
+                },
+                pauseOnFocus: {
+                    type: 'boolean',
+                    default: true
+                },
+                drag: {
+                    type: 'boolean',
+                    default: true
+                },
+                autoplay: {
+                    type: 'boolean',
+                    default: true
+                },
+                interval: {
+                    type: 'interval',
+                    default: 5000
+                },
+                gap: {
+                    type: 'string',
+                    default: '0px'
+                },
+                easing: {
+                    type: 'string',
+                    default: 'ease'
+                },
+                speed: {
+                    type: 'number',
+                    default: 1000,
+                },
+                rewind: {
+                    type: 'boolean',
+                    default: true
+                },
+                rewindByDrag: {
+                    type: 'boolean',
+                    default: true
+                },
+                rewindSpeed: {
+                    type: 'number',
+                    default: 5000
+                },
+                start: {
+                    type: 'string',
+                    default: 'ltr'
+                },
+                pagination: {
+                    type: 'string',
+                    default: 'ltr'
+                },
+                type: {
+                    type: 'string',
+                    default: 'loop'
                 }
             }
         }
