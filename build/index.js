@@ -165,15 +165,21 @@ __webpack_require__.r(__webpack_exports__);
     };
     const removeSlide = index => {
       slides.splice(index, 1);
-      setAttributes(slides);
+      setAttributes({
+        slides: [...slides]
+      });
     };
     const onTextChange = (new_value, index) => {
       slides[index].text = new_value;
-      setAttributes(slides);
+      setAttributes({
+        slides: [...slides]
+      });
     };
     const onImageChange = (new_image, index) => {
       slides[index].image = new_image;
-      setAttributes(slides);
+      setAttributes({
+        slides: [...slides]
+      });
     };
     const onVerticalChange = (new_value, index, responsiveness) => {
       const active_value = slides[index].vertical;
@@ -185,11 +191,15 @@ __webpack_require__.r(__webpack_exports__);
         new_vertical[responsiveness] = new_value;
         slides[index].vertical = new_vertical;
       }
-      setAttributes(slides);
+      setAttributes({
+        slides: [...slides]
+      });
     };
     const onHorizontalChange = (new_value, index) => {
       slides[index].horizontal = new_value;
-      setAttributes(slides);
+      setAttributes({
+        slides: [...slides]
+      });
     };
     const updateSetting = (new_value, setting) => {
       settings[setting] = new_value;
@@ -394,6 +404,7 @@ __webpack_require__.r(__webpack_exports__);
       settings
     } = attributes;
     const json = JSON.stringify(settings);
+    console.log(slides);
     if (slides) {
       return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("section", blockProps, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
         class: "splide",
@@ -433,78 +444,25 @@ __webpack_require__.r(__webpack_exports__);
     settings: {
       type: 'object',
       default: {
-        perPage: {
-          type: 'number',
-          default: 1
-        },
-        perMove: {
-          type: 'number',
-          default: 1
-        },
-        arrows: {
-          type: 'boolean',
-          default: true
-        },
-        pagination: {
-          type: 'boolean',
-          default: true
-        },
-        pauseOnHover: {
-          type: 'boolean',
-          default: true
-        },
-        pauseOnFocus: {
-          type: 'boolean',
-          default: true
-        },
-        drag: {
-          type: 'boolean',
-          default: true
-        },
-        autoplay: {
-          type: 'boolean',
-          default: true
-        },
-        interval: {
-          type: 'interval',
-          default: 5000
-        },
-        gap: {
-          type: 'string',
-          default: '0px'
-        },
-        easing: {
-          type: 'string',
-          default: 'ease'
-        },
-        speed: {
-          type: 'number',
-          default: 1000
-        },
-        rewind: {
-          type: 'boolean',
-          default: true
-        },
-        rewindByDrag: {
-          type: 'boolean',
-          default: true
-        },
-        rewindSpeed: {
-          type: 'number',
-          default: 5000
-        },
-        start: {
-          type: 'string',
-          default: 'ltr'
-        },
-        pagination: {
-          type: 'string',
-          default: 'ltr'
-        },
-        type: {
-          type: 'string',
-          default: 'loop'
-        }
+        perPage: '1',
+        perMove: '1',
+        arrows: true,
+        pagination: true,
+        pauseOnHover: false,
+        pauseOnFocus: false,
+        drag: true,
+        autoplay: true,
+        interval: '5000',
+        gap: '0px',
+        easing: 'ease',
+        speed: '1000',
+        rewind: false,
+        rewindByDrag: false,
+        rewindSpeed: '5000',
+        start: '1',
+        direction: 'ltr',
+        pagination: 'ltr',
+        type: 'loop'
       }
     }
   }

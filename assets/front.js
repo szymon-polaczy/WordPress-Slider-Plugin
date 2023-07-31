@@ -1,3 +1,5 @@
 document.addEventListener('DOMContentLoaded', () => {
-    new Splide( '.splide' ).mount();
+    document.querySelectorAll('.splide:not(.is-initialized)').forEach(slider => {
+        new Splide( slider ).mount();
+    });
 });

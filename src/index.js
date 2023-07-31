@@ -35,17 +35,17 @@ registerBlockType(
 
       const removeSlide = index => {
         slides.splice(index, 1);
-        setAttributes(slides);
+        setAttributes({slides: [...slides]});
       }
 
       const onTextChange = (new_value, index) => {
         slides[index].text = new_value;
-        setAttributes(slides);
+        setAttributes({slides: [...slides]});
       }
 
       const onImageChange = (new_image, index) => {
         slides[index].image = new_image;
-        setAttributes(slides);
+        setAttributes({slides: [...slides]});
       }
 
       const onVerticalChange = (new_value, index, responsiveness) => {
@@ -60,19 +60,18 @@ registerBlockType(
           slides[index].vertical = new_vertical;
         }
 
-        setAttributes(slides);
+        setAttributes({slides: [...slides]});
       }
 
       const onHorizontalChange = (new_value, index) => {
         slides[index].horizontal = new_value;
-        setAttributes(slides);
+        setAttributes({slides: [...slides]});
       }
 
         const updateSetting = (new_value, setting) => {
             settings[setting] = new_value;
             setAttributes({settings: {...settings}});
         }
-
 
 
       return <div {...blockProps}>
@@ -294,6 +293,9 @@ registerBlockType(
       const { slides, settings } = attributes;
 
         const json = JSON.stringify(settings);
+
+        console.log(slides);
+
       if (slides) {
         return <>
           <section {...blockProps}>
@@ -342,78 +344,25 @@ registerBlockType(
         settings: {
             type: 'object',
             default: {
-                perPage: {
-                    type: 'number',
-                    default: 1
-                },
-                perMove: {
-                    type: 'number',
-                    default: 1
-                },
-                arrows: {
-                    type: 'boolean',
-                    default: true
-                },
-                pagination: {
-                    type: 'boolean',
-                    default: true
-                },
-                pauseOnHover: {
-                    type: 'boolean',
-                    default: true
-                },
-                pauseOnFocus: {
-                    type: 'boolean',
-                    default: true
-                },
-                drag: {
-                    type: 'boolean',
-                    default: true
-                },
-                autoplay: {
-                    type: 'boolean',
-                    default: true
-                },
-                interval: {
-                    type: 'interval',
-                    default: 5000
-                },
-                gap: {
-                    type: 'string',
-                    default: '0px'
-                },
-                easing: {
-                    type: 'string',
-                    default: 'ease'
-                },
-                speed: {
-                    type: 'number',
-                    default: 1000,
-                },
-                rewind: {
-                    type: 'boolean',
-                    default: true
-                },
-                rewindByDrag: {
-                    type: 'boolean',
-                    default: true
-                },
-                rewindSpeed: {
-                    type: 'number',
-                    default: 5000
-                },
-                start: {
-                    type: 'string',
-                    default: 'ltr'
-                },
-                pagination: {
-                    type: 'string',
-                    default: 'ltr'
-                },
-                type: {
-                    type: 'string',
-                    default: 'loop'
-                }
+                perPage: '1',
+                perMove: '1', 
+                arrows: true, 
+                pagination: true,
+                pauseOnHover: false,
+                pauseOnFocus: false, 
+                drag: true,
+                autoplay: true, 
+                interval: '5000',
+                gap: '0px', 
+                easing: 'ease',
+                speed: '1000',
+                rewind: false,
+                rewindByDrag: false,
+                rewindSpeed: '5000',
+                start: '1',
+                direction: 'ltr',
+                pagination: 'ltr',
+                type: 'loop'
             }
         }
     }
