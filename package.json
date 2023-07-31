@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "build": "wp-scripts build",
-    "start": "wp-scripts start"
+    "start": "wp-scripts start",
+    "postinstall": "node ./postinstall.js"
   },
   "author": "szymon polaczy",
   "license": "MIT",
@@ -13,7 +14,10 @@
     "@wordpress/scripts": "^26.0.0"
   },
   "dependencies": {
+    "@tinymce/tinymce-react": "^4.3.0",
     "@wordpress/block-editor": "^11.6.0",
-    "@wordpress/components": "^23.6.0"
+    "@wordpress/components": "^23.6.0",
+    "fs-extra": "^11.1.1",
+    "tinymce": "^6.6.0"
   }
 }
