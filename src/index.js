@@ -26,9 +26,7 @@ registerBlockType(
   {
     edit: ({ attributes, setAttributes }) => {
       const blockProps = useBlockProps();
-      const { slides } = attributes;
-
-      console.log(slides);
+      const { slides, settings } = attributes;
 
       const addSlide = () => {
         const new_slide = { image: null, text: null, horizontal: null, vertical: null };
@@ -70,25 +68,33 @@ registerBlockType(
         setAttributes(slides);
       }
 
+        const updateSetting = (new_value, setting) => {
+            settings[setting] = new_value;
+            setAttributes({settings: {...settings}});
+        }
+
+
+
       return <div {...blockProps}>
         {slides ?
           <section>
             <InspectorControls key="setting">
               <TextControl
                 label="Slides per page"
-              //help="Define start index"
-              //value={ textField }
-              //onChange={ onChangeTextField }
+                value={ settings.perPage }
+                onChange={ (new_value) => updateSetting(new_value, 'perPage') }
               />
 
               <TextControl
                 label="Slides per move"
+                value={ settings.perMove }
+                onChange={ (new_value) => updateSetting(new_value, 'perMove') }
               />
 
               <ToggleControl
                 label="Enable arrows"
-              //checked={ checkboxField }
-              //onChange={ onChangeCheckboxField }
+                checked={ settings.arrows }
+                onChange={ (new_value) => updateSetting(new_value, 'arrows') }
               />
 
               <ToggleControl
@@ -192,7 +198,7 @@ registerBlockType(
                     placeholder="Insert slider text here"
                     value={slide.text}
                     onChange={(newText) => onTextChange(newText, index)}
-                    allowedFormats={['core/bold', 'core/italic', 'core/link']}
+                    allowedFormats={['core/bold', 'core/italic', 'core/link', 'core/text-color', 'core/strikethrough']}
                   />
 
                   <div class="position-wrappers">
@@ -253,12 +259,15 @@ registerBlockType(
     },
     save: ({ attributes }) => {
       const blockProps = useBlockProps.save();
-      const { slides } = attributes;
+      const { slides, settings } = attributes;
 
+        const json = JSON.stringify(settings);
       if (slides) {
         return <>
           <section {...blockProps}>
-            <div class="splide" role="group" aria-label="Splide Basic HTML Example">
+            <div class="splide" role="group" 
+                data-splide={json}
+              >
               <div class="splide__track">
                 <div class="splide__list">
                   {slides.map(slide =>
@@ -292,10 +301,29 @@ registerBlockType(
         default: [
           {
             image: null,
-            text: null
+            text: null,
+            horizontal: null,
+            vertical: null,
           }
         ],
       },
+        settings: {
+            type: 'object',
+            default: {
+                perPage: {
+                    type: 'number',
+                    default: 1
+                },
+                perMove: {
+                    type: 'number',
+                    default: 1
+                },
+                arrows: {
+                    type: 'boolean',
+                    default: true
+                }
+            }
+        }
     }
   }
 )

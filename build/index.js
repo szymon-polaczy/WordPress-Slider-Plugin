@@ -149,9 +149,9 @@ __webpack_require__.r(__webpack_exports__);
     } = _ref;
     const blockProps = (0,_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_3__.useBlockProps)();
     const {
-      slides
+      slides,
+      settings
     } = attributes;
-    console.log(slides);
     const addSlide = () => {
       const new_slide = {
         image: null,
@@ -191,19 +191,28 @@ __webpack_require__.r(__webpack_exports__);
       slides[index].horizontal = new_value;
       setAttributes(slides);
     };
+    const updateSetting = (new_value, setting) => {
+      settings[setting] = new_value;
+      setAttributes({
+        settings: {
+          ...settings
+        }
+      });
+    };
     return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", blockProps, slides ? (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("section", null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_3__.InspectorControls, {
       key: "setting"
     }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.TextControl, {
-      label: "Slides per page"
-      //help="Define start index"
-      //value={ textField }
-      //onChange={ onChangeTextField }
+      label: "Slides per page",
+      value: settings.perPage,
+      onChange: new_value => updateSetting(new_value, 'perPage')
     }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.TextControl, {
-      label: "Slides per move"
+      label: "Slides per move",
+      value: settings.perMove,
+      onChange: new_value => updateSetting(new_value, 'perMove')
     }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.ToggleControl, {
-      label: "Enable arrows"
-      //checked={ checkboxField }
-      //onChange={ onChangeCheckboxField }
+      label: "Enable arrows",
+      checked: settings.arrows,
+      onChange: new_value => updateSetting(new_value, 'arrows')
     }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.ToggleControl, {
       label: "Enable pagination (indicator dots)"
     }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.ToggleControl, {
@@ -286,7 +295,7 @@ __webpack_require__.r(__webpack_exports__);
       placeholder: "Insert slider text here",
       value: slide.text,
       onChange: newText => onTextChange(newText, index),
-      allowedFormats: ['core/bold', 'core/italic', 'core/link']
+      allowedFormats: ['core/bold', 'core/italic', 'core/link', 'core/text-color', 'core/strikethrough']
     }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
       class: "position-wrappers"
     }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.SelectControl, {
@@ -349,13 +358,15 @@ __webpack_require__.r(__webpack_exports__);
     } = _ref2;
     const blockProps = _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_3__.useBlockProps.save();
     const {
-      slides
+      slides,
+      settings
     } = attributes;
+    const json = JSON.stringify(settings);
     if (slides) {
       return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("section", blockProps, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
         class: "splide",
         role: "group",
-        "aria-label": "Splide Basic HTML Example"
+        "data-splide": json
       }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
         class: "splide__track"
       }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
@@ -382,8 +393,27 @@ __webpack_require__.r(__webpack_exports__);
       type: 'array',
       default: [{
         image: null,
-        text: null
+        text: null,
+        horizontal: null,
+        vertical: null
       }]
+    },
+    settings: {
+      type: 'object',
+      default: {
+        perPage: {
+          type: 'number',
+          default: 1
+        },
+        perMove: {
+          type: 'number',
+          default: 1
+        },
+        arrows: {
+          type: 'boolean',
+          default: true
+        }
+      }
     }
   }
 });

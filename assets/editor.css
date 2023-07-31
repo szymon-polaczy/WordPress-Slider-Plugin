@@ -56,3 +56,12 @@
     border-top: 2px solid #f0f0f0;
     border-bottom: 2px solid #f0f0f0;
 }
+
+.block-editor-block-inspector .components-base-control {
+    padding: 0 20px;
+    max-width: 100%;
+}
+
+.block-editor-block-inspector .components-base-control:last-child {
+    padding-bottom: 20px;
+}
