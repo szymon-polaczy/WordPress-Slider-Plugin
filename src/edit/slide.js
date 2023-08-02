@@ -20,6 +20,7 @@ export default ({slide, index, slides, setAttributes}) => {
     }
 
     const onTextChange = (new_value, index) => {
+        console.log(new_value);
         slides[index].text = new_value;
         setAttributes({slides: [...slides]});
     }
@@ -51,28 +52,6 @@ export default ({slide, index, slides, setAttributes}) => {
 
     return <Panel class="slide">
                 <PanelBody>
-                    <Editor
-        tinymceScriptSrc={'/var/www/html/WordPress-Slider-Plugin/wp-content/plugins/WordPress-Slider-Plugin/public/tinymce/tinymce.min.js'}
-        onInit={(evt, editor) => editorRef.current = editor}
-        initialValue='<p>This is the initial content of the editor.</p>'
-        init={{
-          height: 500,
-          menubar: false,
-          plugins: [
-            'advlist', 'autolink', 'lists', 'link', 'image', 'charmap',
-            'anchor', 'searchreplace', 'visualblocks', 'code', 'fullscreen',
-            'insertdatetime', 'media', 'table', 'preview', 'help', 'wordcount'
-          ],
-          toolbar: 'undo redo | blocks | ' +
-            'bold italic forecolor | alignleft aligncenter ' +
-            'alignright alignjustify | bullist numlist outdent indent | ' +
-            'removeformat | help',
-          content_style: 'body { font-family:Helvetica,Arial,sans-serif; font-size:14px }'
-        }}
-      />
-      <button>Log editor content</button>
-
-
                   <MediaPlaceholder
                     onSelect={(imageObject) => onImageChange(imageObject, index)}
                     allowedTypes={['image']}
@@ -82,6 +61,22 @@ export default ({slide, index, slides, setAttributes}) => {
                     mediaPreview={slide.image ? <img src={slide.image.url} /> : ''}
                   />
 
+                    <Editor
+                        tinymceScriptSrc={'/var/www/html/WordPress-Slider-Plugin/wp-content/plugins/WordPress-Slider-Plugin/public/tinymce/tinymce.min.js'}
+                        onInit={(evt, editor) => console.log(evt, editor)}
+                        initialValue={slide.text}
+                        //onChange={(newText) => onTextChange(newText, index)}
+                        init={{
+                          height: 500,
+                          menubar: true,
+                          toolbar: 'undo redo | blocks | fontfamily fontsize fontsizeinput forecolor | ' +
+                            'bold italic forecolor link | alignleft aligncenter ' +
+                            'alignright alignjustify | bullist numlist outdent indent | ' +
+                            'removeformat | help',
+                        }}
+                      />
+
+                {/*
                   <RichText
                     class="rich-text"
                     tagName="div"
@@ -93,6 +88,7 @@ export default ({slide, index, slides, setAttributes}) => {
                         'core/text-color', 'core/strikethrough'
                     ]}
                   />
+                    */}
 
                   <div class="position-wrappers">
                     <SelectControl

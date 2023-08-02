@@ -1051,6 +1051,7 @@ __webpack_require__.r(__webpack_exports__);
     });
   };
   const onTextChange = (new_value, index) => {
+    console.log(new_value);
     slides[index].text = new_value;
     setAttributes({
       slides: [...slides]
@@ -1084,18 +1085,7 @@ __webpack_require__.r(__webpack_exports__);
   };
   return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.Panel, {
     class: "slide"
-  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.PanelBody, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_tinymce_tinymce_react__WEBPACK_IMPORTED_MODULE_3__.Editor, {
-    tinymceScriptSrc: '/var/www/html/WordPress-Slider-Plugin/wp-content/plugins/WordPress-Slider-Plugin/public/tinymce/tinymce.min.js',
-    onInit: (evt, editor) => editorRef.current = editor,
-    initialValue: "<p>This is the initial content of the editor.</p>",
-    init: {
-      height: 500,
-      menubar: false,
-      plugins: ['advlist', 'autolink', 'lists', 'link', 'image', 'charmap', 'anchor', 'searchreplace', 'visualblocks', 'code', 'fullscreen', 'insertdatetime', 'media', 'table', 'preview', 'help', 'wordcount'],
-      toolbar: 'undo redo | blocks | ' + 'bold italic forecolor | alignleft aligncenter ' + 'alignright alignjustify | bullist numlist outdent indent | ' + 'removeformat | help',
-      content_style: 'body { font-family:Helvetica,Arial,sans-serif; font-size:14px }'
-    }
-  }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("button", null, "Log editor content"), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.MediaPlaceholder, {
+  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.PanelBody, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.MediaPlaceholder, {
     onSelect: imageObject => onImageChange(imageObject, index),
     allowedTypes: ['image'],
     multiple: false,
@@ -1106,13 +1096,17 @@ __webpack_require__.r(__webpack_exports__);
     mediaPreview: slide.image ? (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("img", {
       src: slide.image.url
     }) : ''
-  }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.RichText, {
-    class: "rich-text",
-    tagName: "div",
-    placeholder: "Insert slider text here",
-    value: slide.text,
-    onChange: newText => onTextChange(newText, index),
-    allowedFormats: ['core/bold', 'core/italic', 'core/link', 'core/text-color', 'core/strikethrough']
+  }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_tinymce_tinymce_react__WEBPACK_IMPORTED_MODULE_3__.Editor, {
+    tinymceScriptSrc: '/var/www/html/WordPress-Slider-Plugin/wp-content/plugins/WordPress-Slider-Plugin/public/tinymce/tinymce.min.js',
+    onInit: (evt, editor) => console.log(evt, editor),
+    initialValue: slide.text
+    //onChange={(newText) => onTextChange(newText, index)}
+    ,
+    init: {
+      height: 500,
+      menubar: true,
+      toolbar: 'undo redo | blocks | fontfamily fontsize fontsizeinput forecolor | ' + 'bold italic forecolor link | alignleft aligncenter ' + 'alignright alignjustify | bullist numlist outdent indent | ' + 'removeformat | help'
+    }
   }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     class: "position-wrappers"
   }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.SelectControl, {
