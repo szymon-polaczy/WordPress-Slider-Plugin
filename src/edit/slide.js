@@ -61,11 +61,11 @@ export default ({slide, index, slides, setAttributes}) => {
                     mediaPreview={slide.image ? <img src={slide.image.url} /> : ''}
                   />
 
+        {/*TODO: issue where it moves user cursor to the start as if it reloaded*/}
                     <Editor
                         tinymceScriptSrc={'/var/www/html/WordPress-Slider-Plugin/wp-content/plugins/WordPress-Slider-Plugin/public/tinymce/tinymce.min.js'}
-                        onInit={(evt, editor) => console.log(evt, editor)}
                         initialValue={slide.text}
-                        //onChange={(newText) => onTextChange(newText, index)}
+                        onEditorChange={(newText) => onTextChange(newText, index)}
                         init={{
                           height: 500,
                           menubar: true,
@@ -75,20 +75,6 @@ export default ({slide, index, slides, setAttributes}) => {
                             'removeformat | help',
                         }}
                       />
-
-                {/*
-                  <RichText
-                    class="rich-text"
-                    tagName="div"
-                    placeholder="Insert slider text here"
-                    value={slide.text}
-                    onChange={(newText) => onTextChange(newText, index)}
-                    allowedFormats={[
-                        'core/bold', 'core/italic', 'core/link', 
-                        'core/text-color', 'core/strikethrough'
-                    ]}
-                  />
-                    */}
 
                   <div class="position-wrappers">
                     <SelectControl

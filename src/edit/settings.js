@@ -40,6 +40,19 @@ export default ({settings, setAttributes}) => {
                 onChange={ (new_value) => updateSetting(new_value, 'pagination') }
               />
 
+            {settings.pagination &&
+             <SelectControl
+                label="Pagination direction"
+                options={[
+                  { value: 'ltr', label: 'Left to right' },
+                  { value: 'rtl', label: 'Right to left' },
+                  { value: 'ttb', label: 'Top to bottom' },
+                ]}
+                value={ settings.paginationDirection }
+                onChange={ (new_value) => updateSetting(new_value, 'paginationDirection') }
+              />
+            }
+
               <ToggleControl
                 label="Enable pause on hover"
                 checked={ settings.pauseOnHover }
@@ -64,11 +77,13 @@ export default ({settings, setAttributes}) => {
                 onChange={ (new_value) => updateSetting(new_value, 'autoplay') }
               />
 
+            {settings.autoplay &&
               <TextControl
                 label="Autoplay interval - Number of miliseconds between autoplay intervals"
                 checked={ settings.interval }
                 onChange={ (new_value) => updateSetting(new_value, 'interval') }
               />
+            }
 
               <TextControl
                 label="Gap between slides (The CSS format is acceptable)"
@@ -90,25 +105,6 @@ export default ({settings, setAttributes}) => {
                 onChange={ (new_value) => updateSetting(new_value, 'speed') }
               />
 
-              <ToggleControl
-                label="Enable rewind to first slide (doesn't work in loop mode)"
-                checked={ settings.rewind }
-                onChange={ (new_value) => updateSetting(new_value, 'rewind') }
-              />
-
-              <ToggleControl
-                label="Enable rewind by drag to first slide (rewind option has to be enabled)"
-                checked={ settings.rewindByDrag }
-                onChange={ (new_value) => updateSetting(new_value, 'rewindByDrag') }
-              />
-
-              <TextControl
-                label="Rewind speed"
-                help="The rewind speed in miliseconds (Transition speed is used as default)"
-                checked={ settings.rewindSpeed }
-                onChange={ (new_value) => updateSetting(new_value, 'rewindSpeed') }
-              />
-
               <TextControl
                 label="Start slide"
                 help="Define start index"
@@ -128,17 +124,6 @@ export default ({settings, setAttributes}) => {
               />
 
               <SelectControl
-                label="Pagination direction"
-                options={[
-                  { value: 'ltr', label: 'Left to right' },
-                  { value: 'rtl', label: 'Right to left' },
-                  { value: 'ttb', label: 'Top to bottom' },
-                ]}
-                value={ settings.paginationDirection }
-                onChange={ (new_value) => updateSetting(new_value, 'paginationDirection') }
-              />
-
-              <SelectControl
                 label="Slider type"
                 options={[
                   { value: 'slide', label: 'Slide' },
@@ -147,5 +132,30 @@ export default ({settings, setAttributes}) => {
                 value={ settings.type }
                 onChange={ (new_value) => updateSetting(new_value, 'type') }
               />
+
+            {settings.type == "slide" &&
+              <ToggleControl
+                label="Enable rewind to first slide (doesn't work in loop mode)"
+                checked={ settings.rewind }
+                onChange={ (new_value) => updateSetting(new_value, 'rewind') }
+              />
+            }
+
+            {settings.rewind &&
+             <TextControl
+                label="Rewind speed"
+                help="The rewind speed in miliseconds (Transition speed is used as default)"
+                checked={ settings.rewindSpeed }
+                onChange={ (new_value) => updateSetting(new_value, 'rewindSpeed') }
+              />
+            }
+                
+            {settings.rewind &&
+              <ToggleControl
+                label="Enable rewind by drag to first slide (rewind option has to be enabled)"
+                checked={ settings.rewindByDrag }
+                onChange={ (new_value) => updateSetting(new_value, 'rewindByDrag') }
+              />
+            }
     </InspectorControls>
 }

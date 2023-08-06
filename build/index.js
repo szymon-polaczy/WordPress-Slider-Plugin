@@ -919,6 +919,20 @@ __webpack_require__.r(__webpack_exports__);
     label: "Enable pagination (indicator dots)",
     checked: settings.pagination,
     onChange: new_value => updateSetting(new_value, 'pagination')
+  }), settings.pagination && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.SelectControl, {
+    label: "Pagination direction",
+    options: [{
+      value: 'ltr',
+      label: 'Left to right'
+    }, {
+      value: 'rtl',
+      label: 'Right to left'
+    }, {
+      value: 'ttb',
+      label: 'Top to bottom'
+    }],
+    value: settings.paginationDirection,
+    onChange: new_value => updateSetting(new_value, 'paginationDirection')
   }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.ToggleControl, {
     label: "Enable pause on hover",
     checked: settings.pauseOnHover,
@@ -935,7 +949,7 @@ __webpack_require__.r(__webpack_exports__);
     label: "Enable autoplay",
     checked: settings.autoplay,
     onChange: new_value => updateSetting(new_value, 'autoplay')
-  }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.TextControl, {
+  }), settings.autoplay && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.TextControl, {
     label: "Autoplay interval - Number of miliseconds between autoplay intervals",
     checked: settings.interval,
     onChange: new_value => updateSetting(new_value, 'interval')
@@ -953,19 +967,6 @@ __webpack_require__.r(__webpack_exports__);
     help: "The transition speed in miliseconds (0 to insantly jump to the next)",
     checked: settings.speed,
     onChange: new_value => updateSetting(new_value, 'speed')
-  }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.ToggleControl, {
-    label: "Enable rewind to first slide (doesn't work in loop mode)",
-    checked: settings.rewind,
-    onChange: new_value => updateSetting(new_value, 'rewind')
-  }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.ToggleControl, {
-    label: "Enable rewind by drag to first slide (rewind option has to be enabled)",
-    checked: settings.rewindByDrag,
-    onChange: new_value => updateSetting(new_value, 'rewindByDrag')
-  }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.TextControl, {
-    label: "Rewind speed",
-    help: "The rewind speed in miliseconds (Transition speed is used as default)",
-    checked: settings.rewindSpeed,
-    onChange: new_value => updateSetting(new_value, 'rewindSpeed')
   }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.TextControl, {
     label: "Start slide",
     help: "Define start index",
@@ -986,20 +987,6 @@ __webpack_require__.r(__webpack_exports__);
     value: settings.direction,
     onChange: new_value => updateSetting(new_value, 'direction')
   }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.SelectControl, {
-    label: "Pagination direction",
-    options: [{
-      value: 'ltr',
-      label: 'Left to right'
-    }, {
-      value: 'rtl',
-      label: 'Right to left'
-    }, {
-      value: 'ttb',
-      label: 'Top to bottom'
-    }],
-    value: settings.paginationDirection,
-    onChange: new_value => updateSetting(new_value, 'paginationDirection')
-  }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.SelectControl, {
     label: "Slider type",
     options: [{
       value: 'slide',
@@ -1010,6 +997,19 @@ __webpack_require__.r(__webpack_exports__);
     }],
     value: settings.type,
     onChange: new_value => updateSetting(new_value, 'type')
+  }), settings.type == "slide" && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.ToggleControl, {
+    label: "Enable rewind to first slide (doesn't work in loop mode)",
+    checked: settings.rewind,
+    onChange: new_value => updateSetting(new_value, 'rewind')
+  }), settings.rewind && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.TextControl, {
+    label: "Rewind speed",
+    help: "The rewind speed in miliseconds (Transition speed is used as default)",
+    checked: settings.rewindSpeed,
+    onChange: new_value => updateSetting(new_value, 'rewindSpeed')
+  }), settings.rewind && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.ToggleControl, {
+    label: "Enable rewind by drag to first slide (rewind option has to be enabled)",
+    checked: settings.rewindByDrag,
+    onChange: new_value => updateSetting(new_value, 'rewindByDrag')
   }));
 });
 
@@ -1098,10 +1098,8 @@ __webpack_require__.r(__webpack_exports__);
     }) : ''
   }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_tinymce_tinymce_react__WEBPACK_IMPORTED_MODULE_3__.Editor, {
     tinymceScriptSrc: '/var/www/html/WordPress-Slider-Plugin/wp-content/plugins/WordPress-Slider-Plugin/public/tinymce/tinymce.min.js',
-    onInit: (evt, editor) => console.log(evt, editor),
-    initialValue: slide.text
-    //onChange={(newText) => onTextChange(newText, index)}
-    ,
+    initialValue: slide.text,
+    onEditorChange: newText => onTextChange(newText, index),
     init: {
       height: 500,
       menubar: true,
