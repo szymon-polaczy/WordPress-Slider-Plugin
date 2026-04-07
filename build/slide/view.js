@@ -1,0 +1,1 @@
+(()=>{function e(){document.querySelectorAll(".splide:not(.is-initialized)").forEach(e=>{new Splide(e).mount()})}"complete"===document.state?e():document.addEventListener("DOMContentLoaded",e)})();

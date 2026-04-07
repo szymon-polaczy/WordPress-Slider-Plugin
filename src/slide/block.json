@@ -1,0 +1,19 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "goo/slide",
+	"version": "0.1.0",
+	"title": "Slide",
+	"category": "Goo Blocks",
+	"icon": "slides",
+	"description": "This block displays a single slide with an image and a text overlay.",
+	"example": {},
+	"supports": {
+		"html": false
+	},
+	"textdomain": "goo-blocks",
+	"editorScript": "file:./index.js",
+	"editorStyle": "file:./index.css",
+	"style": "file:./style-index.css",
+	"viewScript": "file:./view.js"
+}
