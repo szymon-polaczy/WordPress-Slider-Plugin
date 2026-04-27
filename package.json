@@ -4,22 +4,24 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-		"build": "wp-scripts build --blocks-manifest",
-		"format": "wp-scripts format",
-		"lint:css": "wp-scripts lint-style",
-		"lint:js": "wp-scripts lint-js",
-		"packages-update": "wp-scripts packages-update",
-		"plugin-zip": "wp-scripts plugin-zip",
-		"start": "wp-scripts start --blocks-manifest"
+    "build": "wp-scripts build --blocks-manifest",
+    "format": "wp-scripts format",
+    "lint:css": "wp-scripts lint-style",
+    "lint:js": "wp-scripts lint-js",
+    "packages-update": "wp-scripts packages-update",
+    "plugin-zip": "wp-scripts plugin-zip",
+    "start": "wp-scripts start --blocks-manifest"
   },
   "author": "szymon polaczy",
   "license": "MIT",
-	"devDependencies": {
-		"@wordpress/scripts": "latest"
-	},
+  "devDependencies": {
+    "@wordpress/scripts": "latest"
+  },
   "dependencies": {
-		"@wordpress/block-editor": "latest",
-		"@wordpress/blocks": "latest",
-		"@wordpress/i18n": "latest"
+    "@splidejs/react-splide": "^0.7.12",
+    "@splidejs/splide": "^4.1.4",
+    "@wordpress/block-editor": "latest",
+    "@wordpress/blocks": "latest",
+    "@wordpress/i18n": "latest"
   }
 }

@@ -10,9 +10,6 @@ return array(
 		'category' => 'Goo Blocks',
 		'icon' => 'slides',
 		'description' => 'This block displays a single slide with an image and a text overlay.',
-		'example' => array(
-			
-		),
 		'supports' => array(
 			'html' => false
 		),
@@ -20,7 +17,10 @@ return array(
 		'editorScript' => 'file:./index.js',
 		'editorStyle' => 'file:./index.css',
 		'style' => 'file:./style-index.css',
-		'viewScript' => 'file:./view.js'
+		'viewScript' => 'file:./view.js',
+		'parent' => array(
+			'goo/slider'
+		)
 	),
 	'slider' => array(
 		'$schema' => 'https://schemas.wp.org/trunk/block.json',
@@ -31,9 +31,6 @@ return array(
 		'category' => 'Goo Blocks',
 		'icon' => 'slides',
 		'description' => 'This block displays a custom slider with lots of customization options.',
-		'example' => array(
-			
-		),
 		'supports' => array(
 			'html' => false
 		),

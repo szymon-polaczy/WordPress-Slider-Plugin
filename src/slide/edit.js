@@ -11,7 +11,7 @@ import { __ } from '@wordpress/i18n';
  *
  * @see https://developer.wordpress.org/block-editor/reference-guides/packages/packages-block-editor/#useblockprops
  */
-import { useBlockProps } from '@wordpress/block-editor';
+import { InnerBlocks } from '@wordpress/block-editor';
 
 /**
  * Lets webpack process CSS, SASS or SCSS files referenced in JavaScript files.
@@ -20,6 +20,11 @@ import { useBlockProps } from '@wordpress/block-editor';
  * @see https://www.npmjs.com/package/@wordpress/scripts#using-css
  */
 import './editor.scss';
+
+/**
+ * Internal dependencies
+ */
+import BlockAppender from '../components/BlockAppender';
 
 /**
  * The edit function describes the structure of your block in the context of the
@@ -31,11 +36,11 @@ import './editor.scss';
  */
 export default function Edit() {
 	return (
-		<p { ...useBlockProps() }>
-			{ __(
-				'My First Block – hello from the editor!',
-				'my-first-block'
+		<InnerBlocks
+			orientation="vertical"
+			renderAppender={ () => (
+				<BlockAppender label="Add slide content" />
 			) }
-		</p>
+		/>
 	);
 }

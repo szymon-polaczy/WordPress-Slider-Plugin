@@ -4,10 +4,9 @@
 	"name": "goo/slider",
 	"version": "0.1.0",
 	"title": "Slider",
-	"category": "Goo Blocks",
+	"category": "goo-blocks",
 	"icon": "slides",
 	"description": "This block displays a custom slider with lots of customization options.",
-	"example": {},
 	"supports": {
 		"html": false
 	},

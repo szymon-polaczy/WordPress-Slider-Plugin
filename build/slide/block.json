@@ -7,7 +7,6 @@
   "category": "Goo Blocks",
   "icon": "slides",
   "description": "This block displays a single slide with an image and a text overlay.",
-  "example": {},
   "supports": {
     "html": false
   },
@@ -15,5 +14,8 @@
   "editorScript": "file:./index.js",
   "editorStyle": "file:./index.css",
   "style": "file:./style-index.css",
-  "viewScript": "file:./view.js"
+  "viewScript": "file:./view.js",
+  "parent": [
+    "goo/slider"
+  ]
 }
